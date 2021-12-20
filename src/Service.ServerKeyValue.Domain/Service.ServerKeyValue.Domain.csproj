@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Service.ServerKeyValue.Domain.Models\Service.ServerKeyValue.Domain.Models.csproj" />
+    <ProjectReference Include="..\Service.ServerKeyValue.Postgres\Service.ServerKeyValue.Postgres.csproj" />
+  </ItemGroup>
+
+</Project>
