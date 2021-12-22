@@ -12,7 +12,7 @@ using Service.ServerKeyValue.Postgres;
 namespace Service.ServerKeyValue.Postgres.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20211220141612_InitialCreate")]
+    [Migration("20211222045506_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,7 +40,7 @@ namespace Service.ServerKeyValue.Postgres.Migrations
 
                     b.Property<string>("Value")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("jsonb");
 
                     b.HasKey("Id");
 

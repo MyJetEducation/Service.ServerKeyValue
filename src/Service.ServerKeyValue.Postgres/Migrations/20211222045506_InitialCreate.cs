@@ -20,7 +20,7 @@ namespace Service.ServerKeyValue.Postgres.Migrations
                     Id = table.Column<string>(type: "text", nullable: false),
                     UserId = table.Column<Guid>(type: "uuid", nullable: false),
                     Key = table.Column<string>(type: "text", nullable: false),
-                    Value = table.Column<string>(type: "text", nullable: false)
+                    Value = table.Column<string>(type: "jsonb", nullable: false)
                 },
                 constraints: table =>
                 {

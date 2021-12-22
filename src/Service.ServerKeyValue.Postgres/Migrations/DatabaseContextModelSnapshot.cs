@@ -38,7 +38,7 @@ namespace Service.ServerKeyValue.Postgres.Migrations
 
                     b.Property<string>("Value")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("jsonb");
 
                     b.HasKey("Id");
 
