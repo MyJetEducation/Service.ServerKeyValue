@@ -29,9 +29,9 @@ namespace TestApp
 				UserId = userId1,
 				Items = new[]
 				{
-					new KeyValueGrpcModel {Key = "key1", Value = "value1"},
-					new KeyValueGrpcModel {Key = "key2", Value = "value2"},
-					new KeyValueGrpcModel {Key = "key3", Value = "value3"}
+					new KeyValueGrpcModel {Key = "key1", Value = "{\"id\": \"value1\"}"},
+					new KeyValueGrpcModel {Key = "key2", Value = "{\"id\": \"value2\"}"},
+					new KeyValueGrpcModel {Key = "key3", Value = "{\"id\": \"value3\"}"}
 				}
 			});
 			LogData(putResult1);
@@ -44,9 +44,9 @@ namespace TestApp
 				UserId = userId2,
 				Items = new[]
 				{
-					new KeyValueGrpcModel {Key = "key1", Value = "value4"},
-					new KeyValueGrpcModel {Key = "key2", Value = "value5"},
-					new KeyValueGrpcModel {Key = "key3", Value = "value6"}
+					new KeyValueGrpcModel {Key = "key1", Value = "{\"id\": \"value4\"}"},
+					new KeyValueGrpcModel {Key = "key2", Value = "{\"id\": \"value5\"}"},
+					new KeyValueGrpcModel {Key = "key3", Value = "{\"id\": \"value6\"}"}
 				}
 			});
 			LogData(putResult2);
@@ -75,14 +75,18 @@ namespace TestApp
 			ItemsGrpcResponse getResult3 = await client.Get(new ItemsGetGrpcRequest {UserId = userId1, Keys = keys4});
 			LogData(getResult3);
 
+			Console.WriteLine($"{Environment.NewLine}Get one value for user {userId1}, key: key2");
+			ValueGrpcResponse getResult5 = await client.GetSingle(new ItemsGetSingleGrpcRequest {UserId = userId1, Key = "key2" });
+			LogData(getResult5);
+
 			Console.WriteLine($"{Environment.NewLine}Change values for user {userId2}, keys {JsonSerializer.Serialize(keys2)}");
 			CommonGrpcResponse putResult3 = await client.Put(new ItemsPutGrpcRequest
 			{
 				UserId = userId2,
 				Items = new[]
 				{
-					new KeyValueGrpcModel {Key = "key2", Value = "new_value4"},
-					new KeyValueGrpcModel {Key = "key3", Value = "new_value5"}
+					new KeyValueGrpcModel {Key = "key2", Value = "{\"id\": \"new_value4\"}"},
+					new KeyValueGrpcModel {Key = "key3", Value = "{\"id\": \"new_value5\"}"}
 				}
 			});
 			LogData(putResult3);

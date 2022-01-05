@@ -9,6 +9,9 @@ namespace Service.ServerKeyValue.Grpc
 	public interface IServerKeyValueService
 	{
 		[OperationContract]
+		ValueTask<ValueGrpcResponse> GetSingle(ItemsGetSingleGrpcRequest grpcRequest);
+
+		[OperationContract]
 		ValueTask<ItemsGrpcResponse> Get(ItemsGetGrpcRequest grpcRequest);
 
 		[OperationContract]

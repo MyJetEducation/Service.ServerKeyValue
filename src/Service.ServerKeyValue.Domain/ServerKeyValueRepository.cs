@@ -20,7 +20,7 @@ namespace Service.ServerKeyValue.Domain
 			_dbContextOptionsBuilder = dbContextOptionsBuilder;
 		}
 
-		public async ValueTask<ServerKeyValueEntity[]> GetEntities(Guid? userId, string[] keys)
+		public async ValueTask<ServerKeyValueEntity[]> GetEntities(Guid? userId, params string[] keys)
 		{
 			try
 			{

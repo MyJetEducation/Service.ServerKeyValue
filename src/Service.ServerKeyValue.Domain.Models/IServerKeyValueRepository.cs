@@ -5,7 +5,7 @@ namespace Service.ServerKeyValue.Domain.Models
 {
 	public interface IServerKeyValueRepository
 	{
-		ValueTask<ServerKeyValueEntity[]> GetEntities(Guid? userId, string[] keys);
+		ValueTask<ServerKeyValueEntity[]> GetEntities(Guid? userId, params string[] keys);
 
 		ValueTask<bool> SaveEntities(Guid? userId, ServerKeyValueEntity[] entities);
 		

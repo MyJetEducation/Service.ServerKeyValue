@@ -15,6 +15,16 @@ namespace Service.ServerKeyValue.Services
 
 		public ServerKeyValueService(IServerKeyValueRepository serverKeyValueRepository) => _serverKeyValueRepository = serverKeyValueRepository;
 
+		public async ValueTask<ValueGrpcResponse> GetSingle(ItemsGetSingleGrpcRequest grpcRequest)
+		{
+			ServerKeyValueEntity[] entities = await _serverKeyValueRepository.GetEntities(grpcRequest.UserId, grpcRequest.Key);
+
+			return new ValueGrpcResponse
+			{
+				Value = entities?.FirstOrDefault()?.Value
+			};
+		}
+
 		public async ValueTask<ItemsGrpcResponse> Get(ItemsGetGrpcRequest grpcRequest)
 		{
 			ServerKeyValueEntity[] entities = await _serverKeyValueRepository.GetEntities(grpcRequest.UserId, grpcRequest.Keys);
