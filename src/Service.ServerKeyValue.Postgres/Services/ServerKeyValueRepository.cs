@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Service.ServerKeyValue.Domain.Models;
-using Service.ServerKeyValue.Postgres;
+using Service.ServerKeyValue.Postgres.Models;
 
-namespace Service.ServerKeyValue.Domain
+namespace Service.ServerKeyValue.Postgres.Services
 {
 	public class ServerKeyValueRepository : IServerKeyValueRepository
 	{

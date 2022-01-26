@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using Service.ServerKeyValue.Domain;
+using Service.ServerKeyValue.Postgres.Services;
 
 namespace Service.ServerKeyValue.Modules
 {

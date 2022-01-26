@@ -5,8 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Service.ServerKeyValue.Domain.Models\Service.ServerKeyValue.Domain.Models.csproj" />
-    <ProjectReference Include="..\Service.ServerKeyValue.Postgres\Service.ServerKeyValue.Postgres.csproj" />
+    <ProjectReference Include="..\Service.ServerKeyValue.Domain.Models\Service.ServerKeyValue.Domain.Models.csproj">
+      <TreatAsUsed>true</TreatAsUsed>
+    </ProjectReference>
   </ItemGroup>
 
 </Project>

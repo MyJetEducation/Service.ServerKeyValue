@@ -1,6 +1,6 @@
 ﻿using System;
-using Service.ServerKeyValue.Domain.Models;
 using Service.ServerKeyValue.Grpc.Models;
+using Service.ServerKeyValue.Postgres.Models;
 
 namespace Service.ServerKeyValue.Mappers
 {

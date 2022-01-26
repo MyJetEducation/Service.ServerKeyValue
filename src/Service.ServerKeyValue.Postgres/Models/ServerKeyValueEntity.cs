@@ -1,7 +1,6 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Service.ServerKeyValue.Domain.Models
+namespace Service.ServerKeyValue.Postgres.Models
 {
 	public class ServerKeyValueEntity
 	{
