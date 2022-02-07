@@ -7,7 +7,7 @@ namespace Service.ServerKeyValue.Client
 {
 	public static class AutofacHelper
 	{
-		public static void RegisterKeyValueClient(this ContainerBuilder builder, string grpcServiceUrl)
+		public static void RegisterServerKeyValueClient(this ContainerBuilder builder, string grpcServiceUrl)
 		{
 			var factory = new ServerKeyValueClientFactory(grpcServiceUrl);
 
