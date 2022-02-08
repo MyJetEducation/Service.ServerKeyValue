@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Service.ServerKeyValue.Domain\Service.ServerKeyValue.Domain.csproj" />
     <ProjectReference Include="..\Service.ServerKeyValue.Grpc\Service.ServerKeyValue.Grpc.csproj" />
     <ProjectReference Include="..\Service.ServerKeyValue.Postgres\Service.ServerKeyValue.Postgres.csproj" />
+    <PackageReference Include="MyJetEducation.Service.Core.Client" Version="1.0.26" />
   </ItemGroup>
 
   <ItemGroup>
