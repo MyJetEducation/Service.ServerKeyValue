@@ -1,16 +1,17 @@
 ﻿using JetBrains.Annotations;
-using MyJetWallet.Sdk.Grpc;
+using Microsoft.Extensions.Logging;
+using Service.Grpc;
 using Service.ServerKeyValue.Grpc;
 
 namespace Service.ServerKeyValue.Client
 {
 	[UsedImplicitly]
-	public class ServerKeyValueClientFactory : MyGrpcClientFactory
+	public class ServerKeyValueClientFactory : GrpcClientFactory
 	{
-		public ServerKeyValueClientFactory(string grpcServiceUrl) : base(grpcServiceUrl)
+		public ServerKeyValueClientFactory(string grpcServiceUrl, ILogger logger) : base(grpcServiceUrl, logger)
 		{
 		}
 
-		public IServerKeyValueService GetServerKeyValueRepository() => CreateGrpcService<IServerKeyValueService>();
+		public IGrpcServiceProxy<IServerKeyValueService> GetServerKeyValueRepository() => CreateGrpcService<IServerKeyValueService>();
 	}
 }

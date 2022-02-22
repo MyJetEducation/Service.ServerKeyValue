@@ -9,6 +9,7 @@ using MyJetWallet.Sdk.GrpcSchema;
 using MyJetWallet.Sdk.Postgres;
 using MyJetWallet.Sdk.Service;
 using Prometheus;
+using Service.Grpc;
 using Service.ServerKeyValue.Grpc;
 using Service.ServerKeyValue.Modules;
 using Service.ServerKeyValue.Postgres;
@@ -21,7 +22,7 @@ namespace Service.ServerKeyValue
 	{
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.BindCodeFirstGrpc();
+			services.BindGrpc();
 			services.AddHostedService<ApplicationLifetimeManager>();
 			services.AddMyTelemetry("ED-", Program.Settings.ZipkinUrl);
 			services.AddDatabase(DatabaseContext.Schema, Program.Settings.PostgresConnectionString, options => new DatabaseContext(options));
