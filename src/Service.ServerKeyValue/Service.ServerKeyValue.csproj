@@ -9,7 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Service.ServerKeyValue.Grpc\Service.ServerKeyValue.Grpc.csproj" />
     <ProjectReference Include="..\Service.ServerKeyValue.Postgres\Service.ServerKeyValue.Postgres.csproj" />
-    <PackageReference Include="MyJetEducation.Service.Core.Client" Version="1.0.31" />
+    <PackageReference Include="MyJetEducation.Service.Core.Client" Version="1.0.32" />
     <PackageReference Include="MyJetEducation.Service.Grpc" Version="1.0.7" />
     <PackageReference Include="MyJetWallet.Sdk.GrpcMetrics" Version="2.0.4" />
     <PackageReference Include="MyJetWallet.Sdk.Service" Version="2.1.7" />
