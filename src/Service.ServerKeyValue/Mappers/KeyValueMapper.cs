@@ -1,5 +1,4 @@
-﻿using System;
-using Service.ServerKeyValue.Grpc.Models;
+﻿using Service.ServerKeyValue.Grpc.Models;
 using Service.ServerKeyValue.Postgres.Models;
 
 namespace Service.ServerKeyValue.Mappers
@@ -12,7 +11,7 @@ namespace Service.ServerKeyValue.Mappers
 			Value = entity.Value
 		};
 
-		public static ServerKeyValueEntity ToEntity(this KeyValueGrpcModel grpcModel, Guid? userId) => new ServerKeyValueEntity
+		public static ServerKeyValueEntity ToEntity(this KeyValueGrpcModel grpcModel, string userId) => new ServerKeyValueEntity
 		{
 			Id = $"{userId}-{grpcModel.Key}",
 			UserId = userId,

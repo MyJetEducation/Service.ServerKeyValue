@@ -8,29 +8,24 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using MyJetWallet.Sdk.Service;
 using MySettingsReader;
+using Service.Core.Client.Helpers;
 using Service.ServerKeyValue.Settings;
 
 namespace Service.ServerKeyValue
 {
 	public class Program
 	{
-		public const string SettingsFileName = ".myjeteducation";
-
 		public static SettingsModel Settings { get; private set; }
+		public static Func<T> ReloadedSettings<T>(Func<SettingsModel, T> getter) => () => getter.Invoke(GetSettings());
+		private static SettingsModel GetSettings() => SettingsReader.GetSettings<SettingsModel>(ProgramHelper.SettingsFileName);
 
 		public static ILoggerFactory LogFactory { get; private set; }
-
-		public static Func<T> ReloadedSettings<T>(Func<SettingsModel, T> getter) => () =>
-		{
-			var settings = SettingsReader.GetSettings<SettingsModel>(SettingsFileName);
-			return getter.Invoke(settings);
-		};
 
 		public static void Main(string[] args)
 		{
 			Console.Title = "MyJetEducation Service.ServerKeyValue";
 
-			Settings = SettingsReader.GetSettings<SettingsModel>(SettingsFileName);
+			Settings = GetSettings();
 
 			using ILoggerFactory loggerFactory = LogConfigurator.ConfigureElk("MyJetEducation", Settings.SeqServiceUrl, Settings.ElkLogs);
 			ILogger<Program> logger = loggerFactory.CreateLogger<Program>();
@@ -54,25 +49,15 @@ namespace Service.ServerKeyValue
 			Host.CreateDefaultBuilder(args)
 				.UseServiceProviderFactory(new AutofacServiceProviderFactory())
 				.ConfigureWebHostDefaults(webBuilder =>
-				{
-					string httpPort = Environment.GetEnvironmentVariable("HTTP_PORT") ?? "8080";
-					string grpcPort = Environment.GetEnvironmentVariable("GRPC_PORT") ?? "80";
-
-					Console.WriteLine($"HTTP PORT: {httpPort}");
-					Console.WriteLine($"GRPC PORT: {grpcPort}");
-
 					webBuilder.ConfigureKestrel(options =>
 					{
-						options.Listen(IPAddress.Any, int.Parse(httpPort), o => o.Protocols = HttpProtocols.Http1);
-						options.Listen(IPAddress.Any, int.Parse(grpcPort), o => o.Protocols = HttpProtocols.Http2);
-					});
-
-					webBuilder.UseStartup<Startup>();
-				})
+						options.Listen(IPAddress.Any, ProgramHelper.LoadPort("HTTP_PORT", "8080"), o => o.Protocols = HttpProtocols.Http1);
+						options.Listen(IPAddress.Any, ProgramHelper.LoadPort("GRPC_PORT", "80"), o => o.Protocols = HttpProtocols.Http2);
+					}).UseStartup<Startup>())
 				.ConfigureServices(services =>
 				{
 					services.AddSingleton(loggerFactory);
-					services.AddSingleton(typeof (ILogger<>), typeof (Logger<>));
+					services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
 				});
 	}
 }

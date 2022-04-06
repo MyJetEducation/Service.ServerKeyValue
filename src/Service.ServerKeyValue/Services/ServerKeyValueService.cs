@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Service.Core.Client.Models;
 using Service.ServerKeyValue.Grpc;
@@ -38,7 +37,7 @@ namespace Service.ServerKeyValue.Services
 
 		public async ValueTask<CommonGrpcResponse> Put(ItemsPutGrpcRequest grpcRequest)
 		{
-			Guid? userId = grpcRequest.UserId;
+			string userId = grpcRequest.UserId;
 
 			bool saved = await _serverKeyValueRepository.SaveEntities(userId, grpcRequest.Items.Select(model => model.ToEntity(userId)).ToArray());
 
@@ -56,7 +55,7 @@ namespace Service.ServerKeyValue.Services
 		{
 			string[] keys = await _serverKeyValueRepository.GetKeys(grpcRequest.UserId);
 
-			return new KeysGrpcResponse {Keys = keys};
+			return new KeysGrpcResponse { Keys = keys };
 		}
 	}
 }
