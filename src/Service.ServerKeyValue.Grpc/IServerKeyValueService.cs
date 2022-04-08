@@ -9,18 +9,21 @@ namespace Service.ServerKeyValue.Grpc
 	public interface IServerKeyValueService
 	{
 		[OperationContract]
-		ValueTask<ValueGrpcResponse> GetSingle(ItemsGetSingleGrpcRequest grpcRequest);
+		ValueTask<ValueGrpcResponse> GetSingle(ItemsGetSingleGrpcRequest request);
 
 		[OperationContract]
-		ValueTask<ItemsGrpcResponse> Get(ItemsGetGrpcRequest grpcRequest);
+		ValueTask<ItemsGrpcResponse> Get(ItemsGetGrpcRequest request);
 
 		[OperationContract]
-		ValueTask<CommonGrpcResponse> Put(ItemsPutGrpcRequest grpcRequest);
+		ValueTask<CommonGrpcResponse> Put(ItemsPutGrpcRequest request);
 
 		[OperationContract]
-		ValueTask<CommonGrpcResponse> Delete(ItemsDeleteGrpcRequest grpcRequest);
+		ValueTask<CommonGrpcResponse> Delete(ItemsDeleteGrpcRequest request);
 
 		[OperationContract]
-		ValueTask<KeysGrpcResponse> GetKeys(GetKeysGrpcRequest grpcRequest);
+		ValueTask<KeysGrpcResponse> GetKeys(GetKeysGrpcRequest request);
+
+		[OperationContract]
+		ValueTask<CommonGrpcResponse> ClearProgressValues(ClearProgressGrpcRequest request);
 	}
 }
