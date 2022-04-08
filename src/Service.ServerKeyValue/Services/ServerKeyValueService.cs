@@ -40,7 +40,7 @@ namespace Service.ServerKeyValue.Services
 
 		public async ValueTask<CommonGrpcResponse> Put(ItemsPutGrpcRequest request)
 		{
-			Guid? userId = request.UserId;
+			string userId = request.UserId;
 
 			bool saved = await _serverKeyValueRepository.SaveEntities(userId, request.Items.Select(model => model.ToEntity(userId)).ToArray());
 

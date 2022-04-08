@@ -39,7 +39,7 @@ namespace Service.ServerKeyValue.Postgres
 			modelBuilder.Entity<ServerKeyValueEntity>().Property(e => e.Key).IsRequired();
 			modelBuilder.Entity<ServerKeyValueEntity>().Property(e => e.UserId).IsRequired();
 			modelBuilder.Entity<ServerKeyValueEntity>().Property(e => e.Value).IsRequired();
-			modelBuilder.Entity<ServerKeyValueEntity>().HasIndex(e => new {e.UserId, e.Key}).IsUnique();
+			modelBuilder.Entity<ServerKeyValueEntity>().HasIndex(e => new { e.UserId, e.Key }).IsUnique();
 		}
 	}
 }

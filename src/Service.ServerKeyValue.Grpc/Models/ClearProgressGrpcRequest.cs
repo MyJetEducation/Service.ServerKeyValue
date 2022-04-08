@@ -1,4 +1,3 @@
-using System;
 using System.Runtime.Serialization;
 
 namespace Service.ServerKeyValue.Grpc.Models
@@ -7,7 +6,7 @@ namespace Service.ServerKeyValue.Grpc.Models
 	public class ClearProgressGrpcRequest
 	{
 		[DataMember(Order = 1)]
-		public Guid? UserId { get; set; }
+		public string UserId { get; set; }
 
 		[DataMember(Order = 1)]
 		public bool ClearEducationProgress { get; set; }
@@ -33,7 +32,7 @@ namespace Service.ServerKeyValue.Grpc.Models
 		[DataMember(Order = 8)]
 		public bool ClearRetry { get; set; }
 
-		public static ClearProgressGrpcRequest ClearAll(Guid? userId) => new()
+		public static ClearProgressGrpcRequest ClearAll(string userId) => new()
 		{
 			UserId = userId,
 			ClearAchievements = true,
