@@ -17,6 +17,9 @@ namespace Service.ServerKeyValue.Settings
 		[YamlProperty("ServerKeyValue.PostgresConnectionString")]
 		public string PostgresConnectionString { get; set; }
 
+		[YamlProperty("ServerKeyValue.ServiceBusReader")]
+		public string ServiceBusReader { get; set; }
+
 		[YamlProperty("ServerKeyValue.ProgressKeys")]
 		public ProgressKeysSettingsModel ProgressKeys { get; set; }
 	}

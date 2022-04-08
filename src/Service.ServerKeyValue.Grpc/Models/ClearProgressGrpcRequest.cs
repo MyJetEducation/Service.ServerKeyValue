@@ -32,5 +32,18 @@ namespace Service.ServerKeyValue.Grpc.Models
 
 		[DataMember(Order = 8)]
 		public bool ClearRetry { get; set; }
+
+		public static ClearProgressGrpcRequest ClearAll(Guid? userId) => new()
+		{
+			UserId = userId,
+			ClearAchievements = true,
+			ClearEducationProgress = true,
+			ClearHabits = true,
+			ClearKnowledge = true,
+			ClearRetry = true,
+			ClearSkills = true,
+			ClearStatuses = true,
+			ClearUserTime = true
+		};
 	}
 }
