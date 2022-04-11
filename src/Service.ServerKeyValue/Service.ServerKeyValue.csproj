@@ -15,7 +15,8 @@
     <PackageReference Include="MyJetWallet.Sdk.GrpcMetrics" Version="2.0.4" />
     <PackageReference Include="MyJetWallet.Sdk.Service" Version="2.1.7" />
     <PackageReference Include="MyJetWallet.Sdk.ServiceBus" Version="2.2.2" />
-  </ItemGroup>
+    <PackageReference Include="MyJetEducation.Service.Education" Version="1.0.2" />
+ </ItemGroup>
 
   <ItemGroup>
     <None Update="Dockerfile">
