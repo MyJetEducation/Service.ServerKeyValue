@@ -22,8 +22,5 @@ namespace Service.ServerKeyValue.Grpc
 
 		[OperationContract]
 		ValueTask<KeysGrpcResponse> GetKeys(GetKeysGrpcRequest request);
-
-		[OperationContract]
-		ValueTask<CommonGrpcResponse> ClearProgressValues(ClearProgressGrpcRequest request);
 	}
 }

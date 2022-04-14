@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Service.Core.Client.Models;
 using Service.ServerKeyValue.Grpc;
@@ -8,7 +6,6 @@ using Service.ServerKeyValue.Grpc.Models;
 using Service.ServerKeyValue.Mappers;
 using Service.ServerKeyValue.Postgres.Models;
 using Service.ServerKeyValue.Postgres.Services;
-using Service.ServerKeyValue.Settings;
 
 namespace Service.ServerKeyValue.Services
 {
@@ -59,33 +56,6 @@ namespace Service.ServerKeyValue.Services
 			string[] keys = await _serverKeyValueRepository.GetKeys(request.UserId);
 
 			return new KeysGrpcResponse {Keys = keys};
-		}
-
-		public async ValueTask<CommonGrpcResponse> ClearProgressValues(ClearProgressGrpcRequest request)
-		{
-			var keysList = new List<string>();
-			void AddKeys(Func<ProgressKeysSettingsModel, string> value) => keysList.AddRange(value.Invoke(Program.Settings.ProgressKeys).Split(","));
-
-			if (request.ClearEducationProgress)
-				AddKeys(k => k.EducationProgressKeys);
-			if (request.ClearAchievements)
-				AddKeys(k => k.AchievementKeys);
-			if (request.ClearStatuses)
-				AddKeys(k => k.StatusKeys);
-			if (request.ClearHabits)
-				AddKeys(k => k.HabitKeys);
-			if (request.ClearSkills)
-				AddKeys(k => k.SkillKeys);
-			if (request.ClearKnowledge)
-				AddKeys(k => k.KnowledgeKeys);
-			if (request.ClearUserTime)
-				AddKeys(k => k.UserTimeKeys);
-			if (request.ClearRetry)
-				AddKeys(k => k.RetryKeys);
-
-			bool resule = await _serverKeyValueRepository.DeleteEntities(request.UserId, keysList.ToArray());
-
-			return CommonGrpcResponse.Result(resule);
 		}
 	}
 }
