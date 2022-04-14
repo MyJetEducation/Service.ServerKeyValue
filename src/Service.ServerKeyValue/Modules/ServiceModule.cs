@@ -2,6 +2,7 @@
 using MyJetWallet.Sdk.ServiceBus;
 using MyServiceBus.Abstractions;
 using MyServiceBus.TcpClient;
+using Service.ServerKeyValue.Jobs;
 using Service.ServerKeyValue.Postgres.Services;
 using Service.ServerKeyValue.Services;
 using Service.ServiceBus.Models;
@@ -19,6 +20,8 @@ namespace Service.ServerKeyValue.Modules
 
 			MyServiceBusTcpClient serviceBusClient = builder.RegisterMyServiceBusTcpClient(Program.ReloadedSettings(e => e.ServiceBusReader), Program.LogFactory);
 			builder.RegisterMyServiceBusSubscriberBatch<ClearEducationProgressServiceBusModel>(serviceBusClient, ClearEducationProgressServiceBusModel.TopicName, QueueName, TopicQueueType.Permanent);
+
+			builder.RegisterType<ClearEducationProgressNotificator>().AutoActivate().SingleInstance();
 		}
 	}
 }
